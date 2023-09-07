@@ -22,12 +22,24 @@ class AddNoteViewModel(val app: Application) : AndroidViewModel(app) {
             try {
                 val noteEntity = NoteEntity(noteTitle = title, noteDesc = desc)
                 NoteDatabase.getInstance(app.applicationContext).notedao().insert(noteEntity)
+                _saveStateLiveData.value = true
+            } catch (e: Exception) {
+                _saveStateLiveData.value = false
+            }
+
+
+        }
+    }
+
+    fun updateNote(id: Int, title: String, desc: String) {
+        viewModelScope.launch {
+            try {
+                val entity = NoteEntity(id, title, desc)
+                NoteDatabase.getInstance(app.applicationContext).notedao().update(entity)
                 _saveStateLiveData.value=true
             } catch (e: Exception) {
                 _saveStateLiveData.value=false
             }
-
-
         }
     }
 }

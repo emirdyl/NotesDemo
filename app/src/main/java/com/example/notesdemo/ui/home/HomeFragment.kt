@@ -44,10 +44,13 @@ class HomeFragment : Fragment() {
         observeViewModelEvents()
 
         binding.addButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_addNoteFragment)
+            val direction=HomeFragmentDirections.actionHomeFragmentToAddNoteFragment()
+            findNavController().navigate(direction)
         }
+
         binding.addNewNote.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_addNoteFragment)
+            val direction=HomeFragmentDirections.actionHomeFragmentToAddNoteFragment()
+            findNavController().navigate(direction)
         }
 
 

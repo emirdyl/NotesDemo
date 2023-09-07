@@ -12,6 +12,7 @@ import com.example.notesdemo.R
 import com.example.notesdemo.databinding.FragmentAddNoteBinding
 import com.example.notesdemo.databinding.FragmentDetailBinding
 import com.example.notesdemo.databinding.FragmentHomeBinding
+import com.example.notesdemo.ui.home.HomeFragmentDirections
 import com.example.notesdemo.ui.home.HomeViewModel
 import com.example.notesdemo.ui.model.Note
 
@@ -38,7 +39,8 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupUi(args.note)
         binding.editButton.setOnClickListener {
-            findNavController().navigate(R.id.action_detailFragment_to_addNoteFragment)
+            val direction= DetailFragmentDirections.actionDetailFragmentToAddNoteFragment(args.note)
+            findNavController().navigate(direction)
         }
     }
 
@@ -47,6 +49,7 @@ class DetailFragment : Fragment() {
         binding.detailDescTv.text=note.description
 
     }
+
 
 
 

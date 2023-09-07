@@ -16,4 +16,6 @@ data class NoteEntity(
 
     @ColumnInfo(name = "noteDesc")
     var noteDesc : String
+
+    //date
 )
