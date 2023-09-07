@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.notesdemo.R
 import com.example.notesdemo.databinding.FragmentAddNoteBinding
 import com.example.notesdemo.databinding.FragmentDetailBinding
@@ -21,6 +22,8 @@ class DetailFragment : Fragment() {
 
     private val viewModel by viewModels<DetailViewModel>()
 
+    private val args: DetailFragmentArgs by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,13 +36,13 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setupUi(args.note)
         binding.editButton.setOnClickListener {
             findNavController().navigate(R.id.action_detailFragment_to_addNoteFragment)
         }
     }
 
-    private fun setUi(note: Note) {
+    private fun setupUi(note: Note) {
         binding.detailTitleTv.text=note.title
         binding.detailDescTv.text=note.description
 

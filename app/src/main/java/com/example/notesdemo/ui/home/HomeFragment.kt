@@ -70,9 +70,10 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun setRecyclerView() {
+    private fun setRecyclerView() {
         adapter = NoteRecyclerAdapter{
-            findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
+            val direction = HomeFragmentDirections.actionHomeFragmentToDetailFragment(it)
+            findNavController().navigate(direction)
         }
         binding.recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
